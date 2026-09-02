@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
     root: path.resolve(process.cwd()),
   },
   async rewrites() {
+    if (process.env.VERCEL) return [];
     return [
       {
         source: "/api/:path*",
