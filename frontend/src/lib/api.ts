@@ -11,7 +11,9 @@ import type {
 import { FALLBACK_DENTISTS, FALLBACK_SERVICES, FALLBACK_SLOTS } from "./api-data";
 import { decorateSlots } from "./schedule";
 
-const API_ORIGIN = process.env.API_ORIGIN ?? "http://localhost:4000";
+const API_ORIGIN =
+  process.env.API_ORIGIN ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:4000");
 
 function apiUrl(path: string) {
   if (typeof window !== "undefined") return path;

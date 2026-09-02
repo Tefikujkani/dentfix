@@ -1,9 +1,4 @@
-export type TimeSlot = {
-  id: string;
-  label: string;
-  window: string;
-  period: "morning" | "afternoon";
-};
+import type { TimeSlot } from "./types";
 
 function formatLabel(id: string) {
   const [hours, minutes] = id.split(":").map(Number);
@@ -12,7 +7,7 @@ function formatLabel(id: string) {
   return `${hour12}:${String(minutes).padStart(2, "0")} ${suffix}`;
 }
 
-function slot(id: string, period: TimeSlot["period"]): TimeSlot {
+function slot(id: string, period: NonNullable<TimeSlot["period"]>): TimeSlot {
   const label = formatLabel(id);
   return { id, label, window: label, period };
 }
