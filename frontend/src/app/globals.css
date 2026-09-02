@@ -1,0 +1,313 @@
+@import "tailwindcss";
+
+:root {
+  --clinic: #2f6bff;
+  --clinic-dark: #1d4ed8;
+  --mint: #2f6bff;
+  --mint-dark: #1d4ed8;
+  --navy: #0b1220;
+  --ink: #111827;
+  --muted: #6b7280;
+  --line: #e6ebf2;
+  --bg: #f3f6fb;
+  --paper: #ffffff;
+}
+
+@theme inline {
+  --color-clinic: var(--clinic);
+  --color-clinic-dark: var(--clinic-dark);
+  --color-mint: var(--mint);
+  --color-mint-dark: var(--mint-dark);
+  --color-navy: var(--navy);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-bg: var(--bg);
+  --color-paper: var(--paper);
+  --font-sans: var(--font-plus-jakarta);
+  --font-display: var(--font-playfair);
+  --shadow-lift: 0 24px 50px -28px rgb(15 23 42 / 0.28);
+  --shadow-soft: 0 12px 30px -18px rgb(15 23 42 / 0.16);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #dbeafe;
+  color: #1e3a8a;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  border-radius: 999px;
+  background: #2f6bff;
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.accent {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background: #2f6bff;
+  color: white;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.85rem 1.5rem;
+  box-shadow: 0 10px 22px -12px rgb(47 107 255 / 0.9);
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.btn-primary svg,
+.btn-secondary svg {
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 16px 28px -12px rgb(47 107 255 / 0.95);
+}
+
+.btn-primary:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-primary:active {
+  transform: scale(0.96);
+  transition-duration: 80ms;
+}
+
+.btn-primary-sm {
+  padding: 0.55rem 1.15rem;
+  font-size: 0.875rem;
+  box-shadow: 0 6px 16px -12px rgb(47 107 255 / 0.55);
+}
+
+.btn-primary-sm:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px -12px rgb(47 107 255 / 0.65);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 0.55);
+  background: white;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.85rem 1.5rem;
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 180ms ease;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-secondary:active {
+  transform: scale(0.96);
+  transition-duration: 80ms;
+}
+
+.press {
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), background-color 160ms ease, color 160ms ease;
+}
+
+.press:active {
+  transform: scale(0.96);
+}
+
+@keyframes btn-press {
+  0% { transform: scale(1); }
+  32% { transform: scale(0.93); }
+  100% { transform: scale(1); }
+}
+
+.is-pressing {
+  animation: btn-press 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes step-in {
+  from { opacity: 0; transform: translateX(14px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-step {
+  animation: step-in 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes testimonial-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-testimonial {
+  animation: testimonial-in 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.testimonial-photo {
+  transition: opacity 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-shell {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-blob {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  top: -120%;
+  height: 220%;
+  border-radius: 0 0 50% 50%;
+  background: rgb(255 255 255 / 0.94);
+  box-shadow: 0 12px 30px -18px rgb(15 23 42 / 0.2);
+  backdrop-filter: blur(18px);
+  transform: translateY(0) scaleY(0.2);
+  transform-origin: top;
+  transition: transform 0.75s cubic-bezier(0.45, 0, 0.15, 1);
+}
+
+.nav-shell.is-solid .nav-blob {
+  transform: translateY(42%) scaleY(1);
+}
+
+.nav-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 999px;
+  background: white;
+  box-shadow: 0 8px 18px -12px rgb(15 23 42 / 0.45);
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), width 0.38s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s ease;
+  pointer-events: none;
+}
+
+.nav-slider.is-light {
+  background: #2f6bff;
+}
+
+.liquid-wave {
+  display: none;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-rise {
+  animation: hero-rise 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-rise-delay {
+  animation-delay: 140ms;
+}
+
+.hero-rise-more {
+  animation-delay: 280ms;
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.insight-card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+
+.insight-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 28px 50px -24px rgb(15 23 42 / 0.32);
+}
+
+.wave-a,
+.wave-b {
+  animation: wave-drift 10s linear infinite;
+}
+
+.wave-b {
+  animation-duration: 14s;
+  animation-direction: reverse;
+}
+
+@keyframes wave-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn-primary,
+  .btn-secondary,
+  .press,
+  .animate-step,
+  .animate-testimonial,
+  .is-pressing,
+  .hero-rise,
+  .wave-a,
+  .wave-b,
+  .nav-blob,
+  .testimonial-photo,
+  .liquid-wave,
+  .reveal {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    clip-path: none !important;
+    opacity: 1 !important;
+  }
+  .nav-shell.is-solid .nav-blob {
+    transform: none;
+  }
+}

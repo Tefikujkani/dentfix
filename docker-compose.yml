@@ -1,0 +1,14 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: dental-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - dental_mongo_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: dental_clinic
+
+volumes:
+  dental_mongo_data:

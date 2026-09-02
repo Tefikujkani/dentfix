@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Secrets — never commit real credentials
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env.local
+
+# Example env templates are safe to commit
+!.env.example
+!**/.env.example
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/.data/
+
+# Logs & debug
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE (optional local settings)
+.vscode/
+.idea/
+
+# Build output
+dist/
+build/
