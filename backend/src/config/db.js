@@ -31,11 +31,14 @@ export async function connectDb() {
     usingMemoryStore = false;
     console.log(`MongoDB connected: ${mongoose.connection.host}/${mongoose.connection.name}`);
   } catch (error) {
-    if (env.nodeEnv === "production") {
+    const onVercel = Boolean(process.env.VERCEL);
+    if (env.nodeEnv === "production" && !onVercel) {
       throw error;
     }
     usingMemoryStore = true;
-    console.warn(`MongoDB unavailable (${error.message}). Using in-memory store for local development.`);
+    console.warn(
+      `MongoDB unavailable (${error.message}). Using in-memory store${onVercel ? " on Vercel — set MONGODB_URI for persistence" : " for local development"}.`,
+    );
   }
 }
 
