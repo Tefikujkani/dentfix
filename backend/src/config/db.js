@@ -17,7 +17,7 @@ async function connectWithCache() {
   if (!globalCache.mongoose.promise) {
     mongoose.set("strictQuery", true);
     globalCache.mongoose.promise = mongoose
-      .connect(env.mongoUri, { serverSelectionTimeoutMS: 8000 })
+      .connect(env.mongoUri, { serverSelectionTimeoutMS: process.env.VERCEL ? 4000 : 8000 })
       .then((mongooseInstance) => mongooseInstance);
   }
 
@@ -26,6 +26,15 @@ async function connectWithCache() {
 }
 
 export async function connectDb() {
+  const localMongo =
+    !process.env.MONGODB_URI || env.mongoUri.includes("127.0.0.1") || env.mongoUri.includes("localhost");
+
+  if (process.env.VERCEL && localMongo) {
+    usingMemoryStore = true;
+    console.warn("MongoDB not configured on Vercel — using in-memory store. Add MONGODB_URI for persistence.");
+    return;
+  }
+
   try {
     await connectWithCache();
     usingMemoryStore = false;

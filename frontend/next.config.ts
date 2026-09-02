@@ -1,4 +1,3 @@
-import path from "node:path";
 import type { NextConfig } from "next";
 
 const apiOrigin = process.env.API_ORIGIN ?? "http://localhost:4000";
@@ -12,11 +11,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  turbopack: {
-    root: path.resolve(process.cwd()),
-  },
   async rewrites() {
-    if (process.env.VERCEL) return [];
+    if (process.env.VERCEL && process.env.API_ORIGIN) return [];
     return [
       {
         source: "/api/:path*",
